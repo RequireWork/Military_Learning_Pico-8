@@ -1,0 +1,10 @@
+print(3)
+print("Your Name")
+print(true)
+print(nil)
+
+print(type("3"))
+print(type("true"))
+
+I spent my whole day without sitting down for even an hour. 
+I will to spend more time working harder tomorrow.
