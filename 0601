@@ -2,4 +2,7 @@ player1Name = "Kamala"
 player2Name = "Bruno"
 highestScore = nil
 
-
+userName = "CoalStone"
+print(type(userName))
+age = 3
+print(type(age))
