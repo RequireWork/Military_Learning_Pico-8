@@ -6,3 +6,13 @@ userName = "CoalStone"
 print(type(userName))
 age = 3
 print(type(age))
+-- Initial values, don't change this!
+highestScore = 25
+
+-- Write your code below:
+highestScorerName = "Kamala"
+print(highestScorerName)
+highestScorerName = "Bruno"
+highestScore = 26
+print(highestScorerName)
+print(highestScore)
