@@ -1,0 +1,19 @@
+message = "hope and love"
+timer = 0
+position = 40
+
+function _update()
+ timer += 1
+ if timer > 120 then
+  message = "is this working?"
+  position = 35
+ end
+end
+
+function _draw()
+ cls() -- clears the screen (black background)
+ print("hello, world!", 40, 60, 7) -- draw text at (40,60) in white (color 7)
+ print(message, position, 70, 10)
+end
+
+
