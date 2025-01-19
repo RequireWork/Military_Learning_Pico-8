@@ -1,0 +1,70 @@
+#######Trying Game Dev rn########
+
+##DO NOT FORGET TO CHANGE KEYCONFIGS!!!
+
+
+bullets = {}
+
+player = {
+ x = 64,
+ y = 64,  
+ speed = 2
+}
+
+shoot_timer = 0
+shoot_cooldown = 450
+can_shoot = true
+
+function _draw()
+ cls()
+ spr(0, player.x, player.y) 
+ draw_bullets()   
+end
+
+function _update()
+	if btn(0) then player.x -= player.speed end
+	if btn(1) then player.x += player.speed end
+ if btn(3) then player.y += player.speed end
+	if btn(2) then player.y -= player.speed end
+ 
+ if shoot_timer > 0 then
+  shoot_timer = -1
+ end
+ 
+ if btnp(4) and shoot_timer <= 0 then
+  shoot()
+  shoot_timer = shoot_cooldown
+  can_shoot = false
+ end
+ 
+ if not btn(4) then
+  can_shoot = true
+ end
+  
+ update_bullets()
+end
+
+function shoot()
+ add(bullets, {x = player.x+2, y = player.y, speed = -4})
+end 
+
+function update_bullets()
+ for b in all(bullets) do
+  b.y += b.speed
+  
+  if b.y < 0 then
+   del(bullets, b)
+  end
+ end
+end
+
+function draw_bullets()
+ for b in all(bullets) do
+  rectfill(b.x, b.y, b.x+2, b.y+4, 8)
+ end
+end
+
+
+
+
+
