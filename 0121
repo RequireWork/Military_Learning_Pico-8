@@ -22,3 +22,32 @@ function _draw()
  print("hello, world!", 40, 60, 7) -- draw text at (40,60) in white (color 7)
  print(message, position, 70, 10)
 end
+
+message = "try to press o or p!"
+timer = 0
+position = 25
+
+function _update()
+-- timer += 1
+-- if timer > 120 then
+--  message = "is this working?"
+--  position = 35
+-- end
+ if btn(4) then
+  message, color, position = "you pressed o!", 7, 40
+ elseif btn(5) then
+  message, color, position = "you pressed p!", 8, 40
+ else
+  message, color, position = "try to press o or p!", 10, 25
+ end
+end
+
+function _draw()
+ cls() -- clears the screen (black background)
+-- print("hello, world!", 40, 60, 7) -- draw text at (40,60) in white (color 7)
+-- print(message, position, 70, 10)
+ 
+ for i = 1,5 do
+  print("well well well", 40, 20 + (i*10), 7)
+ end
+end
