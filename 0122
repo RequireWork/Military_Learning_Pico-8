@@ -1,0 +1,10 @@
+num_lines = 5
+
+function _draw()
+ cls()
+ for i = 1, num_lines do
+  print("test"..i, 40, 20 + (i * 10), i + 7)
+ end
+end
+
+
