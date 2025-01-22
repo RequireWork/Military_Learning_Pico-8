@@ -1,0 +1,18 @@
+x_pos = 0
+speed = 1
+
+function _update()
+ x_pos += speed
+ 
+ if x_pos > 70 or x_pos < 0 then
+  speed = -speed
+ end
+end
+
+function _draw()
+ cls()
+ print(speed, x_pos - 10, 40, 7)
+ print("does this work", x_pos, 50, 7)
+end
+
+-----------------------------------------------
