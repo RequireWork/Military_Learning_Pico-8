@@ -7,4 +7,19 @@ function _draw()
  end
 end
 
+------------------------------------------------------
+Moving Text Test!
 
+x_pos = 0
+y_pos = 100
+speed = 1
+
+function _update()
+ x_pos += speed
+ y_pos -= speed
+end
+
+function _draw()
+ cls()
+ print("moving!", x_pos, y_pos, 7)
+end
