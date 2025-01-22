@@ -11,8 +11,35 @@ end
 
 function _draw()
  cls()
- print(speed, x_pos - 10, 40, 7)
+ print(speed, 60, 40, 7)
  print("does this work", x_pos, 50, 7)
 end
 
+-----------------------------------------------
+
+bird = {
+ x = 40,
+ y = 64,
+ gravity = 0.3,
+ lift = -3,
+ velocity = 0
+}
+
+function _update()
+ bird.velocity += bird.gravity
+ bird.y += bird.velocity
+
+ if btnp(4) then
+  bird.velocity = bird.lift
+ end
+end
+
+function _draw()
+ cls()
+ print("flappy bird!", 40, 10, 7)
+ spr(0, bird.x, bird.y)
+end
+
+-----------------------------------------------
+CODE HAS A PROBLEM WHERE THE BIRD CAN JUST MOVE UPWARDS WHEN KEY IS PRESSED
 -----------------------------------------------
