@@ -1,0 +1,65 @@
+bird = {
+ x = 40,
+ y = 64,
+ gravity = 0.3,
+ lift = -3,
+ velocity = 0
+}
+
+points = 0
+pipes = {}
+pipe_speed = 1
+pipe_spawn_timer = 90
+game_over = false
+
+function spawn_pipes()
+ local gap_y = rnd(60) + 20
+ add(pipes, {x = 128, gap_y = gap_y, w= 16, h = 16, passed = false})
+end
+
+function _update()
+ if not game_over then
+  bird.velocity += bird.gravity
+  bird.y += bird.velocity
+
+  if btnp(4) then
+   bird.velocity = bird.lift
+  end
+  
+  for p in all(pipes) do
+   p.x -= pipe_speed
+   
+   if bird.x + 8 > p.x and bird.x < p.x + p.w then
+    if bird.y < p.gap_y or bird.y + 8 > p.gap_y + 30 then
+     game_over = true
+    end
+   end
+   
+   if p.x + p.w < bird.x and not p.passed then
+    points += 1
+    p.passed = true
+   end
+  end	
+  
+  pipe_spawn_timer -= 1
+  if pipe_spawn_timer <= 0 then
+   spawn_pipes()
+   pipe_spawn_timer = 90
+  end
+ end
+end
+
+function _draw()
+ cls()
+ spr(0, bird.x, bird.y)
+ 
+ for p in all(pipes) do
+  rectfill(p.x, 0, p.x + p.w, p.gap_y, 11)
+  rectfill(p.x, p.gap_y + 30, p.x + p.w, 128, 11)
+	end
+	
+	if game_over then
+	 print("game_over!", 40, 64, 8)
+  print("final score: "..points, 40, 74, 8)
+	end
+end
