@@ -16,3 +16,43 @@ function _draw()
  cls()
  spr	(0, player.x, player.y)
 end
+=--------------------------------------
+
+player={
+ x = 64,
+ y = 64,
+ speed = 2,
+ y_vel = 0,
+ gravity = 0.2,
+ jump = -4,
+ on_ground = false,
+}
+
+ground_y = 120
+
+function _update()
+ if btn(0) then player.x -= player.speed end
+ if btn(1) then player.x += player.speed end
+ 
+ if btn(4) and player.on_ground then
+  player.y_vel = player.jump
+  player.on_ground = false
+ end
+
+ if not player.on_ground then
+  player.y_vel += player.gravity
+ end
+
+ player.y += player.y_vel
+ 
+ if player.y >= ground_y then
+  player.y = ground_y
+  player.on_ground = true
+  player.y_vel = 0
+ end
+end
+
+function _draw()
+ cls()
+ spr(0, player.x, player.y)
+end
