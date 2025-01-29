@@ -33,6 +33,7 @@ end
 
 function _draw()
  cls()
+ map(0,0,0,0,16,16)
  spr(0, player.x, 110)
  spr(1, spawnpoint, apple.y)
  print(points, 60, 20) 
