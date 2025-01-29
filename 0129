@@ -1,0 +1,33 @@
+player = {
+ x = 64,
+ speed = 2.5
+}
+
+apple = {
+ y = 10,
+ speed = 2.3
+}
+
+points = 0
+spawnpoint = rnd(120)
+
+function _update()
+ if btn(0) then player.x -= player.speed end
+ if btn(1) then player.x += player.speed end
+ 
+ apple.y += apple.speed
+ if apple.y >= 105 then
+  if abs(player.x - spawnpoint) <= 5 then
+   points += 1
+  end
+  spawnpoint = rnd(120)
+  apple.y = 10  
+ end
+end
+
+function _draw()
+ cls()
+ spr(0, player.x, 110)
+ spr(1, spawnpoint, apple.y)
+ print(points, 60, 20) 
+end
