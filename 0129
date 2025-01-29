@@ -1,6 +1,6 @@
 player = {
  x = 64,
- speed = 2.5
+ speed = 3.5
 }
 
 apple = {
@@ -8,6 +8,7 @@ apple = {
  speed = 2.3
 }
 
+update_checker = false
 points = 0
 spawnpoint = rnd(120)
 
@@ -15,7 +16,6 @@ function _update()
  if btn(0) then player.x -= player.speed end
  if btn(1) then player.x += player.speed end
  
- apple.y += apple.speed
  if apple.y >= 105 then
   if abs(player.x - spawnpoint) <= 5 then
    points += 1
@@ -23,6 +23,12 @@ function _update()
   spawnpoint = rnd(120)
   apple.y = 10  
  end
+ 
+ if points == 10 and update_checker == false then
+  apple.speed += 1
+  update_checker = true
+ end
+ apple.y += apple.speed
 end
 
 function _draw()
@@ -30,4 +36,5 @@ function _draw()
  spr(0, player.x, 110)
  spr(1, spawnpoint, apple.y)
  print(points, 60, 20) 
+ print(apple.speed, 60, 30)
 end
