@@ -1,0 +1,26 @@
+player = {
+ x = 64,
+ speed = 2.3,
+ health = 3
+}
+
+fallobj = {}
+
+function spawn_obj()
+ local obj = {}
+ obj.x = rnd(120)
+ obj.speed = 1 + rnd(2)
+ obj.y = 0
+ obj.type = flr(rnd(2))
+ add(fallobj, obj)
+end
+
+function _update()
+ if btn(0) then player.x -= player.speed end
+ if btn(1) then player.x += player.speed end
+end
+
+function _draw()
+ cls()
+ spr(0, player.x, 110)
+end
