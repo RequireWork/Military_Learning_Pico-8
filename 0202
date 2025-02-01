@@ -1,0 +1,58 @@
+player = {
+ x = 64,
+ speed = 2.3,
+ health = 3,
+ hitscan = false,
+ count = 0
+}
+
+fallingobj = {}
+max_objects = 3
+
+function spawn_obj()
+ if #fallingobj < max_objects then
+  local obj = {
+   x = rnd(120),
+   speed = 1 + rnd(1),
+   y = 0,
+   type = flr(rnd(2))
+  }
+  add(fallingobj, obj)
+ end
+end
+
+function _update()
+ if btn(0) then player.x -= player.speed end
+ if btn(1) then player.x += player.speed end
+
+ for i,obj in ipairs(fallingobj) do
+  obj.y += obj.speed
+  
+  if obj.y > 110 then
+   del(fallingobj, obj)
+  end
+  
+  if obj.x+1 <= player.x or obj.x-1 >= player.x and hitscan == false then
+   player.count += 1
+   hitscan = true
+  end
+ end 
+ 
+ if rnd(1) < 0.05 then
+  spawn_obj()
+ end
+ 
+end
+
+function _draw()
+ cls()
+ spr(0, player.x, 110)
+ for i, obj in ipairs(fallingobj) do
+  if obj.type == 0 then
+   spr(1, obj.x, obj.y)
+  else
+   spr(2, obj.x, obj.y)
+  end
+ end
+ print(player.count, 30, 30)
+end
